@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useListProjects } from "@workspace/api-client-react";
 import { AnimatePresence, motion, useInView, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   ArrowRight,
@@ -14,7 +15,6 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { useListProjects } from "@workspace/api-client-react";
 
 /* ─── Data ───────────────────────────────────────────────────────────── */
 const STATS = [
@@ -28,49 +28,54 @@ const MILESTONES = [
   {
     year: "2009",
     title: "Foundation",
-    desc: "Swapnapurti Associates incorporated in Pune by Saurabh Rajguru with a vision to build India's most trusted construction brand.",
-  },
-  {
-    year: "2012",
-    title: "First Landmark",
-    desc: "Delivered Orion Phase I in Hinjewadi — a 200,000 sq ft commercial campus that became the reference project for Grade-A office infrastructure in Pune.",
-  },
-  {
-    year: "2015",
-    title: "Pan-India Expansion",
-    desc: "Opened regional offices in Mumbai, Bengaluru, and Chennai. Crossed ₹1,000 Cr in annual project value for the first time.",
+    desc: "Swapnapurti Associates was founded with a vision to build dependable, quality-driven construction solutions rooted in trust and accountability.",
   },
   {
     year: "2018",
-    title: "ISO & LEED Certification",
-    desc: "Achieved ISO 9001:2015 quality certification and delivered India's first net-zero-energy commercial tower — Zenith Corporate Office, Bengaluru.",
+    title: "First Landmark",
+    desc: "Targeted large-scale projects in Manchar, Narayangoan, and Ambegoan, marking the firm's early focus on high-impact execution and bigger opportunities.",
   },
   {
-    year: "2021",
-    title: "Infrastructure Division",
-    desc: "Launched dedicated infrastructure division, winning the ₹4,800 Cr Western Corridor project — the largest contract in firm history.",
+    year: "2022",
+    title: "Project Growth",
+    desc: "Started taking up projects worth crores, beginning with a 2 Cr project base and steadily growing into larger execution scopes.",
   },
   {
     year: "2024",
-    title: "120 Projects & Beyond",
-    desc: "Crossed 120 completed projects spanning residential, commercial, industrial, and infrastructure verticals across 24 Indian cities.",
+    title: "Moved to Pune",
+    desc: "Expanded operations to Pune to pursue bigger residential and commercial projects with stronger operational capacity and market presence.",
+  },
+  {
+    year: "2026",
+    title: "Startup Journey",
+    desc: "Started our own venture and began taking on client projects, focusing on quality execution, reliability, and long-term growth.",
   },
 ];
 
 const LEADERSHIP = [
   {
-    name: "Saurabh Rajguru",
-    role: "Founder & CEO",
-    image: "/images/CEO.png",
-    quote: "We don't build structures. We engineer futures — one meticulously placed beam at a time.",
-    credentials: ["B.E Civil, Sinhgad Institute", "5+ years in construction leadership"],
+    name: "Shreyas",
+    role: "Software Engineer",
+    image: "/images/profile1.png",
+    quote: "We design software that moves fast, scales cleanly, and helps startups ship quickly with confidence.",
+    credentials: [
+      "3+ startup projects delivered",
+      "Average delivery time: 15 days",
+      "www.paradiseai.in",
+      "9146059446",
+      "contact@paradiseai.in",
+    ],
   },
   {
-    name: "Shreyas Borse",
-    role: "Chief Operating Officer",
-    image: "/images/coo.png",
-    quote: "Operational excellence is not a department — it's the DNA of every project we undertake.",
-    credentials: ["Aspiring Computer Engineer, MMCOE"],
+    name: "Prashil Dive",
+    role: "BackEnd Developer and AI Engineer",
+    image: "/images/dive.png",
+    quote: "Reliable systems and AI-native workflows are the backbone of modern product growth.",
+    credentials: [
+      "Backend systems and AI agent workflows",
+      "Scalable APIs and automation pipelines",
+      "Focused on performance, architecture, and dependable execution",
+    ],
   },
 ];
 
@@ -391,6 +396,51 @@ export default function About() {
     <div className="w-full bg-[#F8FAFC] text-[#0F172A] overflow-x-hidden antialiased font-sans">
       {/* ── 1. FOUNDER ───────────────────────────────────────────────── */}
       <FounderHero />
+
+      {/* ── 2. OUR TEAM ─────────────────────────────────────────────── */}
+      <section className="bg-white py-24 md:py-32">
+        <div className="container mx-auto max-w-5xl px-6 md:px-8">
+          <FadeUp className="mb-14 text-center">
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <div className="h-px w-8 bg-[#2563EB]" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#2563EB]">Our Team</span>
+              <div className="h-px w-8 bg-[#2563EB]" />
+            </div>
+            <h2 className="text-4xl font-serif font-bold tracking-tight text-[#0F172A] md:text-5xl">
+              Built on vision. Delivered with precision.
+            </h2>
+          </FadeUp>
+
+          <div className="grid justify-center gap-8 lg:grid-cols-2">
+            {LEADERSHIP.map((member, index) => (
+              <FadeUp key={member.name} delay={index * 0.08}>
+                <div className="group mx-auto h-full max-w-[430px] overflow-hidden rounded-[28px] border border-slate-200 bg-[#F8FAFC] shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+                  <div className="overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="h-[420px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6 md:p-7">
+                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#2563EB]">{member.role}</p>
+                    <h3 className="mb-4 font-serif text-3xl font-bold text-[#0F172A]">{member.name}</h3>
+                    <p className="mb-5 text-sm leading-relaxed text-slate-600">{member.quote}</p>
+                    <ul className="space-y-2 text-sm text-slate-700">
+                      {member.credentials.map((item) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <span className="mt-1.5 h-2 w-2 rounded-full bg-[#2563EB]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── 2. BRAND STATEMENT ──────────────────────────────────────── */}
       <section className="py-28 md:py-36 bg-white relative">

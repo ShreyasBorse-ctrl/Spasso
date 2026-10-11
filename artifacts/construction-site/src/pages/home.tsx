@@ -8,7 +8,10 @@ import {
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
+  Globe,
+  Mail,
   MapPin,
+  Phone,
   TrendingUp,
   Users,
 } from "lucide-react";
@@ -78,6 +81,37 @@ function StatCard({
     </FadeIn>
   );
 }
+
+const TEAM_MEMBERS = [
+  {
+    name: "Shreyas",
+    // title: "Co-Founder",
+    image: "/images/profile1.png",
+    description:
+      "Shreyas is a software engineer and co-founder of ParadiseAI, building reliable digital products and AI-first experiences for startups. He brings a product mindset, strong engineering instincts, and a clear focus on shipping value quickly.",
+    details: [
+      "3+ startup projects delivered",
+      "Average project completion time: 15 days",
+      "Website: www.paradiseai.in",
+      "Contact: 9146059446",
+      "Email: contact@paradiseai.in",
+    ],
+  },
+  {
+    name: "Prashil Dive",
+    // title: "Co-Founder",
+    image: "/images/dive.png",
+    description:
+      "Prashil Dive is a backend developer with deep focus on AI agent architecture, scalable APIs, and automation systems. He designs robust event-driven workflows and works closely on intelligent backend systems that power modern products.",
+    details: [
+      "Specializes in backend systems and AI agent workflows",
+      "Builds scalable APIs, automation pipelines, and intelligent integrations",
+      "Works across product, infrastructure, and AI-powered service layers",
+      "Focused on clean architecture, performance, and dependable execution",
+      "Helps startups move from concept to production with reliable engineering",
+    ],
+  },
+];
 
 export default function Home() {
   const { data: stats } = useGetOverviewStats();
@@ -341,8 +375,7 @@ export default function Home() {
       </section> */}
 
       {/* ── Featured Projects ───────────────────────────────────────── */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-gray-200 via-white to-gray-250 overflow-hidden">
-        <div className="container mx-auto px-4 md:px-8">
+        <section className="bg-linear-to-br from-[#050505] via-[#0B1F3A] to-[#0A192F] py-24 md:py-32 overflow-hidden">        <div className="container mx-auto px-4 md:px-8">
           <FadeIn>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
               <div className="max-w-2xl">
@@ -352,7 +385,7 @@ export default function Home() {
                     Our Portfolio
                   </span>
                 </div>
-                <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0F172A] tracking-tight">
+                <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#ffffff] tracking-tight">
                   Featured Projects
                 </h2>
                 <p className="mt-4 font-sans text-[#6B7280] text-lg max-w-xl leading-relaxed">
@@ -543,14 +576,14 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <FadeIn direction="left">
               <div className="relative">
-                <div className="overflow-hidden rounded-2xl shadow-2xl aspect-4/5">
+                <div className="overflow-hidden rounded-2xl shadow-2xl aspect-[4/5] bg-slate-200">
                   <img
                     src="/images/CEO.png"
                     alt="Saurabh Rajguru – CEO"
                     onError={(e) => {
                       (e.currentTarget as HTMLImageElement).src = "https://via.placeholder.com/600x750?text=CEO";
                     }}
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover object-[center_18%]"
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-[#1E3A8A] text-white rounded-2xl p-6 shadow-xl">
@@ -607,6 +640,93 @@ export default function Home() {
                 </Button>
               </div>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Our Team ───────────────────────────────────────────────── */}
+      <section className="bg-linear-to-r from-[#050505] via-[#0B1F3A] to-[#0A192F] py-24 md:py-32">
+        <div className="container mx-auto max-w-6xl px-4 md:px-8">
+          <div className="space-y-14">
+            {TEAM_MEMBERS.map((member, index) => (
+              <FadeIn key={member.name} delay={index * 0.08}>
+                <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+                  <div className="order-2 lg:order-1">
+                    <div className="mb-5 flex items-center gap-3">
+                      <div className="h-px w-8 bg-[#60A5FA]" />
+                      <span className="font-sans text-[11px] font-medium uppercase tracking-[0.28em] text-[#60A5FA]">
+                        About {member.name}
+                      </span>
+                    </div>
+
+                    <h3 className="mb-5 font-serif text-4xl font-bold leading-none text-white md:text-6xl">
+                      {member.name}
+                    </h3>
+
+                    <p className="mb-5 text-base leading-relaxed text-slate-300 md:text-lg">
+                      {member.description}
+                    </p>
+
+                    <ul className="space-y-3 text-base text-slate-200">
+                      {member.details.map((detail) => (
+                        <li key={detail} className="flex items-start gap-3">
+                          <span className="mt-2 h-2.5 w-2.5 rounded-full bg-[#60A5FA]" />
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-7 flex flex-wrap gap-3 pt-5">
+                      {member.name === "Shreyas" ? (
+                        <>
+                          <a
+                            href="https://www.paradiseai.in"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-white/5 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-200 transition hover:border-[#60A5FA] hover:text-white"
+                          >
+                            <Globe size={14} />
+                            www.paradiseai.in
+                          </a>
+                          <a
+                            href="tel:+919146059446"
+                            className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-white/5 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-200 transition hover:border-[#60A5FA] hover:text-white"
+                          >
+                            <Phone size={14} />
+                            9146059446
+                          </a>
+                          <a
+                            href="mailto:contact@paradiseai.in"
+                            className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-white/5 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-200 transition hover:border-[#60A5FA] hover:text-white"
+                          >
+                            <Mail size={14} />
+                            contact@paradiseai.in
+                          </a>
+                        </>
+                      ) : (
+                        <a
+                          href="mailto:contact@paradiseai.in"
+                          className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-white/5 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-200 transition hover:border-[#60A5FA] hover:text-white"
+                        >
+                          <Mail size={14} />
+                          Contact team
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="order-1 lg:order-2">
+                    <div className="mx-auto max-w-[430px] overflow-hidden rounded-[28px] border border-slate-700 bg-[#081d30] shadow-[0_30px_80px_rgba(2,9,18,0.6)]">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="h-[420px] w-full object-cover object-[center_18%]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
