@@ -88,7 +88,7 @@ const TEAM_MEMBERS = [
     // title: "Co-Founder",
     image: "/images/profile1.png",
     description:
-      "Shreyas is a software engineer and co-founder of ParadiseAI, building reliable digital products and AI-first experiences for startups. He brings a product mindset, strong engineering instincts, and a clear focus on shipping value quickly.",
+      "Shreyas is a software engineer and Front-End Developer, building reliable digital products and AI-first experiences for startups. He brings a product mindset, strong engineering instincts, and a clear focus on shipping value quickly.",
     details: [
       "3+ startup projects delivered",
       "Average project completion time: 15 days",
